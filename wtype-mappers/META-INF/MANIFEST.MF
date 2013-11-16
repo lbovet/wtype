@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: wtype-mappers
+Bundle-SymbolicName: wtype-mappers
+Bundle-Version: 1.0.0.qualifier
+Export-Package: ch.vobos.wtype.json.schema.tsmapper
+Require-Bundle: org.eclipse.xtext.junit4;bundle-version="2.4.3",
+ org.junit;bundle-version="4.11.0",
+ org.eclipse.xtend.lib;bundle-version="2.4.3",
+ com.google.inject;bundle-version="3.0.0"

@@ -10,8 +10,8 @@ import ch.vobos.wtype.json.schema.model.Schema;
  */
 public class TypeScriptMapper {
 
-	public Schema map(Typescript typeScript) {
-		Schema schema = new Schema();
+	def Schema map(Typescript typeScript) {
+		val Schema schema = new Schema();
 		
 		return schema;
 	}
