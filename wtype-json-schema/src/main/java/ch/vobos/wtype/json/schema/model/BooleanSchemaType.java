@@ -4,7 +4,7 @@ package ch.vobos.wtype.json.schema.model;
  * @author Laurent Bovet (laurent.bovet@windmaster.ch)
  */
 public class BooleanSchemaType extends PrimitiveSchemaType {
-	public static final SchemaType INSTANCE = new BooleanSchemaType();
+	public static final PrimitiveSchemaType INSTANCE = new BooleanSchemaType();
 	
 	private BooleanSchemaType() {
 	}

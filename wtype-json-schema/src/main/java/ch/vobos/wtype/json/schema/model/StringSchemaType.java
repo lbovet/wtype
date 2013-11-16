@@ -5,7 +5,7 @@ package ch.vobos.wtype.json.schema.model;
  */
 public class StringSchemaType extends PrimitiveSchemaType {
 
-	public static final SchemaType INSTANCE = new StringSchemaType();
+	public static final PrimitiveSchemaType INSTANCE = new StringSchemaType();
 	
 	private StringSchemaType() {
 	}
