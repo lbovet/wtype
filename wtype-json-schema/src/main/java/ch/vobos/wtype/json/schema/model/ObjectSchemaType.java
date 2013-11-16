@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Laurent Bovet (laurent.bovet@windmaster.ch)
  */
-public class ObjectType extends Type {
+public class ObjectSchemaType extends SchemaType {
     public final List<Property> properties = new ArrayList<Property>();
     
 	@Override

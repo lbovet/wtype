@@ -6,5 +6,5 @@ package ch.vobos.wtype.json.schema.model;
 public class Schema {
     public String id;
     public String title;
-    public Type type;
+    public SchemaType type;
 }

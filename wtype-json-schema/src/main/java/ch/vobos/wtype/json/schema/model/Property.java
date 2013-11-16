@@ -6,5 +6,5 @@ package ch.vobos.wtype.json.schema.model;
 public class Property {
 	public String name;
     public boolean required;
-    public Type type;
+    public SchemaType type;
 }
