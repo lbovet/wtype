@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema#",
-    ${if schema.id}"id": "${schema.id}"${end}${if schema.title},
+    ${if schema.id}"id": "${schema.id}",${end}${if schema.title},
     "title": "${schema.title}",${end}
     "type": "${schema.type.name}",
     ${if schema.type.name=object}
