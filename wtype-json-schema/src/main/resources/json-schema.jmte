@@ -1,0 +1,5 @@
+{
+    ${if schema.id}"\$schema": "${schema.id}"${end}    
+    ${if schema.title},"title": "${schema.title}"${end}
+    
+} 
