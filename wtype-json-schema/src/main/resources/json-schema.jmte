@@ -1,5 +1,10 @@
 {
-    ${if schema.id}"\$schema": "${schema.id}"${end}    
-    ${if schema.title},"title": "${schema.title}"${end}
-    
+    ${if schema.id}"\$schema": "${schema.id}"${end}${if schema.title},
+    "title": "${schema.title}"${end}
+    "type": "${schema.type.name}"
+    ${if schema.type.name=object}
+    "properties" : {
+        ${foreach schema.type.properties property ,}"${property.name}" : "${property.type.name}"
+        ${end}
+    ${end}}
 } 

@@ -5,4 +5,9 @@ package ch.vobos.wtype.json.schema.model;
  */
 public class ArrayType extends Type {
     Schema elementSchema;
+	
+    @Override
+	public String getName() {
+		return "array";
+	}
 }

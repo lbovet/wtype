@@ -8,4 +8,9 @@ import java.util.List;
  */
 public class ObjectType extends Type {
     public final List<Property> properties = new ArrayList<Property>();
+    
+	@Override
+	public String getName() {
+		return "object";
+	}
 }
