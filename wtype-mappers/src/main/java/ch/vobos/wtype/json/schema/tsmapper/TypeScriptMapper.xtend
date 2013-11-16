@@ -28,7 +28,7 @@ public class TypeScriptMapper {
 	val Map<InterfaceOrClassDeclaration, ObjectSchemaType> map = newHashMap
 
 	def Schema map(Typescript typeScript) {
-		val Declaration rootInterface = typeScript.interfacesAndClasses.head
+		val Declaration rootInterface = typeScript.interfacesAndClasses.types.head
 		new Schema() => [
 			id = rootInterface.declaration.name
 			type = map(rootInterface.declaration)
@@ -39,7 +39,7 @@ public class TypeScriptMapper {
 		if (!map.containsKey(tsDeclaration)) {
 			val newObjectType = new ObjectSchemaType
 			for (TypeMember member : tsDeclaration.objectType.members) {
-				val property = mapPropertyToTypeMember(member as PropertySignature) // TODO later, when there are other subclasses of TypeMember than only PropertySignature, take off the "as" cast  
+				val property = mapPropertyToTypeMember(member.signature as PropertySignature) // TODO later, when there are other subclasses of TypeMember than only PropertySignature, take off the "as" cast  
 				if (property != null)
 					newObjectType.properties.add(property)
 			}
