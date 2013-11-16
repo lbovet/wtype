@@ -1,8 +1,4 @@
-class Dimension {
-    length: number;
-    width: number;
-    height: number;
-}
+// This is the same as product.ts, but Dimension is used before it is declared 
 
 class Product {
 
@@ -21,4 +17,10 @@ class Product {
     tags: string[];
 
     dimension: Dimension;
+}
+
+class Dimension {
+    length: number;
+    width: number;
+    height: number;
 }
