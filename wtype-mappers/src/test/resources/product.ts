@@ -1,10 +1,10 @@
-class Dimension {
+interface Dimension {
     length: number;
     width: number;
     height: number;
 }
 
-class Product {
+interface Product {
 
     /**
      * The unique identifier for a product.

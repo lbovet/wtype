@@ -7,12 +7,16 @@ import ch.vobos.typescript.PropertySignature
 import ch.vobos.typescript.TypeMember
 import ch.vobos.typescript.TypeReference
 import ch.vobos.typescript.Typescript
+import ch.vobos.wtype.json.schema.model.BooleanSchemaType
+import ch.vobos.wtype.json.schema.model.NumberSchemaType
 import ch.vobos.wtype.json.schema.model.ObjectSchemaType
+import ch.vobos.wtype.json.schema.model.PrimitiveSchemaType
 import ch.vobos.wtype.json.schema.model.Property
 import ch.vobos.wtype.json.schema.model.Schema
 import ch.vobos.wtype.json.schema.model.SchemaType
 import ch.vobos.wtype.json.schema.model.StringSchemaType
 import java.util.Map
+import ch.vobos.typescript.Declaration
 
 /**
  * Maps ch.vobos.typescript.model to ch.vobos.wtype.json.schema.model. 
@@ -21,27 +25,27 @@ import java.util.Map
  */
 public class TypeScriptMapper {
 
-	val Map<InterfaceDeclaration, ObjectSchemaType> map = newHashMap
+	val Map<Declaration, ObjectSchemaType> map = newHashMap
 
 	def Schema map(Typescript typeScript) {
-		val InterfaceDeclaration rootInterface = typeScript.interfaces.head
+		val Declaration rootInterface = typeScript.interfacesAndClasses.head
 		new Schema() => [
 			id = rootInterface.name
 			type = map(rootInterface)
 		]		
 	}
 	
-	def ObjectSchemaType map(InterfaceDeclaration tsInterface) {
-		if (!map.containsKey(tsInterface)) {
+	def ObjectSchemaType map(Declaration tsDeclaration) {
+		if (!map.containsKey(tsDeclaration)) {
 			val newObjectType = new ObjectSchemaType
-			for (TypeMember member : tsInterface.objectType.members) {
+			for (TypeMember member : tsDeclaration.objectType.members) {
 				val property = mapPropertyToTypeMember(member as PropertySignature) // TODO later, when there are other subclasses of TypeMember than only PropertySignature, take off the "as" cast  
 				if (property != null)
 					newObjectType.properties.add(property)
 			}
-			map.put(tsInterface, newObjectType)
+			map.put(tsDeclaration, newObjectType)
 		}
-		map.get(tsInterface)
+		map.get(tsDeclaration)
 	}
 	
 	def dispatch Property mapPropertyToTypeMember(PropertySignature propertySignature) {
@@ -56,12 +60,11 @@ public class TypeScriptMapper {
 			]
 	}
 	
-	// TODO use new PrimitiveSchemaType instead of just SchemaType
-	def dispatch SchemaType mapTypeToSchemaType(PredefinedType predefinedType) {
+	def dispatch PrimitiveSchemaType mapTypeToSchemaType(PredefinedType predefinedType) {
 		switch predefinedType.predefinedType {
 			case PredefinedTypeEnum.STRING : StringSchemaType.INSTANCE
-			// TODO case PredefinedTypeEnum.BOOLEAN : BooleanSchemaType.INSTANCE
-			// TODO case PredefinedTypeEnum.NUMBER : NumberSchemaType.INSTANCE
+			case PredefinedTypeEnum.BOOLEAN : BooleanSchemaType.INSTANCE
+			case PredefinedTypeEnum.NUMBER : NumberSchemaType.INSTANCE
 			default : null // means this will be skipped (see above)
 		}
 	}

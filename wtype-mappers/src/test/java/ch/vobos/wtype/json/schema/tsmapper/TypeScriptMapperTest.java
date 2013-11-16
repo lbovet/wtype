@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import ch.vobos.typescript.Typescript;
 import ch.vobos.typescript.standalone.TypeScriptStandalone;
+import ch.vobos.wtype.json.schema.formatter.Formatter;
 import ch.vobos.wtype.json.schema.model.Schema;
 
 import com.google.common.base.Charsets;
@@ -27,6 +28,7 @@ public class TypeScriptMapperTest {
 		Typescript ts = typeScript.parseAndValidate(getResource("simple.ts"));
 		Schema schema = mapper.map(ts);
 		
+		System.out.println(new Formatter().format(schema));
 		// TODO use SchemaSerializer to stringify schema
 		// TODO assertEquals(getResource("/simple.schema.json"), jsonSchemaString);
 	}
