@@ -1,6 +1,6 @@
 package ch.vobos.wtype.json.schema.tsmapper;
 
-import ch.vobos.typescript.InterfaceDeclaration
+import ch.vobos.typescript.Declaration
 import ch.vobos.typescript.PredefinedType
 import ch.vobos.typescript.PredefinedTypeEnum
 import ch.vobos.typescript.PropertySignature
@@ -16,7 +16,7 @@ import ch.vobos.wtype.json.schema.model.Schema
 import ch.vobos.wtype.json.schema.model.SchemaType
 import ch.vobos.wtype.json.schema.model.StringSchemaType
 import java.util.Map
-import ch.vobos.typescript.Declaration
+import ch.vobos.typescript.InterfaceOrClassDeclaration
 
 /**
  * Maps ch.vobos.typescript.model to ch.vobos.wtype.json.schema.model. 
@@ -25,17 +25,17 @@ import ch.vobos.typescript.Declaration
  */
 public class TypeScriptMapper {
 
-	val Map<Declaration, ObjectSchemaType> map = newHashMap
+	val Map<InterfaceOrClassDeclaration, ObjectSchemaType> map = newHashMap
 
 	def Schema map(Typescript typeScript) {
 		val Declaration rootInterface = typeScript.interfacesAndClasses.head
 		new Schema() => [
-			id = rootInterface.name
-			type = map(rootInterface)
+			id = rootInterface.declaration.name
+			type = map(rootInterface.declaration)
 		]		
 	}
 	
-	def ObjectSchemaType map(Declaration tsDeclaration) {
+	def ObjectSchemaType map(InterfaceOrClassDeclaration tsDeclaration) {
 		if (!map.containsKey(tsDeclaration)) {
 			val newObjectType = new ObjectSchemaType
 			for (TypeMember member : tsDeclaration.objectType.members) {
