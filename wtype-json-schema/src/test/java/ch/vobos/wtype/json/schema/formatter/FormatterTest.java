@@ -23,7 +23,7 @@ public class FormatterTest {
 		((ObjectSchemaType)schema.type).properties.add(prop);
 		Property prop2 = new Property();
 		prop2.name = "world";
-		prop2.type = new NumberSchemaType();
+		prop2.type = NumberSchemaType.INSTANCE;
 		((ObjectSchemaType)schema.type).properties.add(prop2);
 		
 		System.out.println(formatter.format(schema));
