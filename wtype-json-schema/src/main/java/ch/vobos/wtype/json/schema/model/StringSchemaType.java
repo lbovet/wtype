@@ -5,6 +5,11 @@ package ch.vobos.wtype.json.schema.model;
  */
 public class StringSchemaType extends SchemaType {
 
+	public static final SchemaType INSTANCE = new StringSchemaType();
+	
+	private StringSchemaType() {
+	}
+	
 	@Override
 	public String getName() {
 		return "string";
