@@ -9,6 +9,5 @@ import java.util.List;
 public class Schema {
     public String id;
     public String title;
-    public final List<Schema> schemas = new ArrayList<Schema>();
     public Type type;
 }
