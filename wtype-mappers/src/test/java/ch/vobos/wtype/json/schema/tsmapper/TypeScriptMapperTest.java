@@ -1,32 +1,30 @@
 package ch.vobos.wtype.json.schema.tsmapper;
 
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
 import java.net.URL;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-
 import ch.vobos.typescript.Typescript;
 import ch.vobos.typescript.standalone.TypeScriptStandalone;
 import ch.vobos.wtype.json.schema.model.Schema;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+
 public class TypeScriptMapperTest {
 
-	private TypeScriptStandalone typeScript;
+	private static TypeScriptStandalone typeScript;
 	private TypeScriptMapper mapper = new TypeScriptMapper();
 	
-	@BeforeClass public void beforeClass() {
+	@BeforeClass public static void beforeClass() {
 		typeScript = TypeScriptStandalone.getInstance();
 	}
 	
 	@Test
 	public void testSimpleMapping() throws Exception {
-		Typescript ts = typeScript.parseAndValidate(getResource("/simple.ts"));
+		Typescript ts = typeScript.parseAndValidate(getResource("simple.ts"));
 		Schema schema = mapper.map(ts);
 		
 		// TODO use SchemaSerializer to stringify schema
